@@ -11,6 +11,10 @@ font = pygame.font.Font(None, 40)
 display_surface = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 
+rifle_surface = pygame.image.load("assets/rifle.png").convert_alpha()
+rifle_rect = rifle_surface.get_frect()
+rifle_rect.y = 500
+
 duck_surface = pygame.image.load("assets/duck.png").convert_alpha()
 ducks = []
 duck_timer = pygame.USEREVENT + 1
@@ -80,6 +84,9 @@ while True:
         ducks = [duck for duck in ducks if not duck['kill']]
 
     display_surface.blit(stall_surface)
+
+    rifle_rect.x = mouse_x
+    display_surface.blit(rifle_surface, rifle_rect)
 
     text_surf = font.render(f'Your score: {score}', True, 'White')
     text_rect = text_surf.get_rect(center = (1280 / 2, 20))
