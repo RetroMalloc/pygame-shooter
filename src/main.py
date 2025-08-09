@@ -4,6 +4,10 @@ from random import choice, randint
 
 pygame.init()
 
+score = 0
+
+font = pygame.font.Font(None, 40)
+
 display_surface = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 
@@ -71,9 +75,14 @@ while True:
             
             if duck['rect'].collidepoint(crosshair_rect.center):
                 duck['kill'] = True
+                score += 1
         
         ducks = [duck for duck in ducks if not duck['kill']]
 
     display_surface.blit(stall_surface)
+
+    text_surf = font.render(f'Your score: {score}', True, 'White')
+    text_rect = text_surf.get_rect(center = (1280 / 2, 20))
+    display_surface.blit(text_surf, text_rect)
 
     pygame.display.update()
