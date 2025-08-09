@@ -3,6 +3,7 @@ import pygame, sys
 from random import choice, randint
 
 pygame.init()
+pygame.mixer.init()
 
 score = 0
 
@@ -25,6 +26,9 @@ crosshair_rect = crosshair_surface.get_frect()
 
 background_surface = pygame.image.load("assets/background.png").convert_alpha()
 stall_surface = pygame.image.load("assets/stall.png").convert_alpha()
+
+pygame.mixer_music.load("assets/music.ogg")
+pygame.mixer_music.play(-1)
 
 while True:
     deltaTime = clock.tick() / 1000
